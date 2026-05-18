@@ -547,7 +547,7 @@ th.col-tr, td.col-tr{width:240px;text-align:center;font-size:.84rem;font-weight:
   <div class="kpi" style="--ac:#15803d" onclick="applyFilter({es:['CONCLUIDO','FALTA FINALIZAR']},this,'Concluidas');setTimeout(()=>document.getElementById('sec-estatus')?.scrollIntoView({behavior:'smooth',block:'start'}),80);">
     <div class="lbl">Concluidas</div><div class="val" style="color:#15803d" id="kpi-conc-val">93.1%</div><div class="sub" id="kpi-conc-sub" style="color:#15803d;font-weight:800;">27,220</div>
     </div>
-  <div class="kpi" style="--ac:#f59e0b;" onclick="applyFilter({pendiente:true},this,'Pendientes');setTimeout(()=>scrollToPe(),80);">
+  <div class="kpi" style="--ac:#f59e0b;" onclick="scrollToPe();">
     <div class="lbl">Escrituras</div>
     <div class="val" style="color:#f59e0b" id="kpi-pend-val">0</div>
     <div class="sub" id="kpi-pend-sub" style="display:none;"></div>
@@ -556,7 +556,7 @@ th.col-tr, td.col-tr{width:240px;text-align:center;font-size:.84rem;font-weight:
       <span>No TD <strong id="kpi-notr-val" style="color:#e2e8f0;font-size:.82rem;font-weight:800;">14,024</strong></span>
     </div>
     </div>
-  <div class="kpi" style="--ac:#ef4444;" onclick="applyFilter({alerta:true},this,'Puntos Críticos');setTimeout(()=>scrollToAl(),80);">
+  <div class="kpi" style="--ac:#ef4444;" onclick="scrollToAl();">
     <div class="lbl">Urgentes</div>
     <div class="val" style="color:#ef4444;" id="kpi-alrt-val">0</div>
     <div class="sub" id="kpi-alrt-pct" style="display:none;"></div>
@@ -607,7 +607,7 @@ th.col-tr, td.col-tr{width:240px;text-align:center;font-size:.84rem;font-weight:
     <!-- Fila superior: URGENTES + Tendencia -->
     <div style="display:flex;gap:10px;flex:1 1 0;min-height:0;">
       <!-- KPI URGENTES — marco propio -->
-      <div class="chart-box kpi2-alrt" style="flex:0 0 190px;min-width:0;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;text-align:center;cursor:pointer;" onclick="applyFilter({alerta:true},this,'Puntos Críticos');setTimeout(()=>scrollToAl(),80);" title="Ver sección Urgentes">
+      <div class="chart-box kpi2-alrt" style="flex:0 0 190px;min-width:0;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;text-align:center;cursor:pointer;" onclick="scrollToAl();" title="Ver sección Urgentes">
         <h3 style="margin:0 0 6px 0;width:100%;text-align:center;font-size:1.2rem;">Urgentes</h3>
         <div class="val" style="color:#ef4444;font-size:2rem;font-weight:800;line-height:1.05;" id="kpi2-alrt-val">–</div>
         <div id="kpi2-alrt-pct" style="display:none;"></div>
@@ -630,7 +630,7 @@ th.col-tr, td.col-tr{width:240px;text-align:center;font-size:.84rem;font-weight:
     <!-- Fila inferior: PENDIENTES + Tubería -->
     <div style="display:flex;gap:10px;flex:1 1 0;min-height:0;">
       <!-- KPI PENDIENTES — marco propio -->
-      <div class="chart-box kpi2-pend" style="flex:0 0 190px;min-width:0;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;text-align:center;cursor:pointer;" onclick="applyFilter({pendiente:true},this,'Pendientes');setTimeout(()=>scrollToPe(),80);" title="Ver sección Escrituras">
+      <div class="chart-box kpi2-pend" style="flex:0 0 190px;min-width:0;overflow:hidden;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;text-align:center;cursor:pointer;" onclick="scrollToPe();" title="Ver sección Escrituras">
         <h3 style="margin:0 0 6px 0;width:100%;text-align:center;font-size:1.2rem;">Pendientes</h3>
         <div class="val" style="color:#f59e0b;font-size:2rem;font-weight:800;line-height:1.05;" id="kpi2-pend-val">–</div>
         <div id="kpi2-pend-sub" style="display:none;"></div>
