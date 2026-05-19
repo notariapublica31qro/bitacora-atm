@@ -3005,6 +3005,16 @@ function updateAlCounts(){
       GH_REPO = 'bitacora-' + _effAb.toLowerCase();
       // Recomputar índices derivados con los nuevos datos
       DATA_FF_CO = DATA_CO.filter(function(r){ return r.es === 'FALTA FINALIZAR'; });
+      // ── Reparar datos legacy: quitar FF de DATA.pe y de alertas que no las deben tener ──
+      var _ffEscsRepair = new Set((DATA_CO||[]).filter(function(r){ return r.es==='FALTA FINALIZAR'; }).map(function(r){ return String(r.e); }));
+      if (DATA.pe) {
+        DATA.pe = DATA.pe.filter(function(r){ return !_ffEscsRepair.has(String(r.e)) && r.es !== 'FALTA FINALIZAR'; });
+      }
+      ['firmas','td','rpp45','rpp90solo','td_pv'].forEach(function(k){
+        if (DATA.al && DATA.al[k]) {
+          DATA.al[k] = DATA.al[k].filter(function(r){ return !_ffEscsRepair.has(String(r.e)); });
+        }
+      });
       DATA_FF_PE = DATA.pe.filter(function(r){ return r.es === 'FALTA FINALIZAR'; });
       // Recomputar peMap con los nuevos datos
       Object.keys(peMap).forEach(function(k){ delete peMap[k]; });
