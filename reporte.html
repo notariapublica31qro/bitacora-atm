@@ -23,7 +23,7 @@ body.light #kpi-meta-firmadas-val{color:#475569 !important;}
 body.light #kpi-alrt-meta span:first-child{color:#475569 !important;}
 body.light .h-logo{background:transparent;filter:brightness(0) invert(37%) sepia(60%) saturate(800%) hue-rotate(114deg) brightness(82%);}
 body.light .rf-logo{background:transparent;filter:brightness(0) invert(37%) sepia(60%) saturate(800%) hue-rotate(114deg) brightness(82%);}
-body.light #pe-table thead th,body.light #al-table thead th{background:#1e293b !important;color:#ffffff !important;}
+body.light #pe-table thead th,body.light #al-table thead th,body.light #ex-table thead th{background:#1e293b !important;color:#ffffff !important;}
 body.light .mini-tbl thead th{color:#1e293b !important;}
 body.light #kpi2-meta-firmadas-val{color:#475569 !important;}
 body.light #kpi2-tras-val,body.light #kpi2-notr-val{color:#475569 !important;}
@@ -2716,6 +2716,18 @@ function renderAl(){
   const filtered = getAlRows();
   const rows = sortRows(filtered, alSortCol, alSortDir, 'e', 'asc');
   const total=rows.length;
+  // ── Actualizar contadores de tabs SIEMPRE (antes de cualquier return) ──
+  try{
+    ['todos','firmas','td','notifcat','rpp45','rpp90solo','bancos90','infonavit90','fovissste90'].forEach(function(k){
+      var cEl=document.getElementById('cnt-'+k); if(!cEl) return;
+      var cSeen=new Map();
+      (getPorVencerRows(k)||[]).concat(getTabRows(k)||[]).forEach(function(r){
+        if(!pieAbKey||r.ab===pieAbKey) cSeen.set(r.e,true);
+      });
+      if(k==='todos') [...cSeen.keys()].forEach(function(e){ if(!DATA_PE_ESCS.has(e)) cSeen.delete(e); });
+      cEl.textContent = cSeen.size > 0 ? String(cSeen.size) : '';
+    });
+  }catch(ex){}
   if(total===0){
     document.getElementById('al-tbody').innerHTML=`<tr><td colspan="${AL_COLS.length}" style="text-align:center;padding:1.25rem 1rem;color:var(--muted);font-size:1.7rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase">SIN URGENTES</td></tr>`;
     const info=document.getElementById('al-info'); if(info) info.textContent='0 escrituras';
